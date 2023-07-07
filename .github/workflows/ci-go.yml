@@ -1,4 +1,4 @@
-name: Build, Test, Push to Docker Hub, and Deploy to GKE
+name: Build, Test, Push to Docker Hub, and Deploy to K8S
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/go:${{ github.run_number }}
 
-  deploy-gke-go:
+  deploy-K8S-go:
     needs: build-push-go
     runs-on: ubuntu-latest
     env:
