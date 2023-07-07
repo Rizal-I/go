@@ -55,8 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-      GKE_CLUSTER: default-cicd-demo-k8s
-      GKE_ZONE: us-central1-a
+      GKE_CLUSTER: apache-flink-cluster-1
+      GKE_ZONE: us-central1-c
 
     steps:
     - name: Checkout
