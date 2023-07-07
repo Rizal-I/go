@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'go/**'
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -40,6 +41,7 @@ jobs:
       - name: Build app and run tests in Docker
         uses: docker/build-push-action@v4
         with:
+          context: go
           file: Dockerfile.multistage
           target: run-test-stage
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -57,6 +59,7 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           push: true
+          context: go
           file: Dockerfile.multistage
           target: build-release-stage
           tags: ${{ steps.meta.outputs.tags }}
