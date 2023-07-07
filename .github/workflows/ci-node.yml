@@ -1,4 +1,4 @@
-name: Build, Test, Push to Docker Hub, and Deploy to K8S
+name: Node Build, Test, Push to Docker Hub, and Deploy to K8S
 
 on:
   push:
