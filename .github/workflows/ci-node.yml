@@ -69,7 +69,7 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    - name: Deploy Go App to k8s
+    - name: Deploy Node App to k8s
       run: |
         sed -i "s/TAG/${{ github.run_number }}/g" k8s/node.yaml
         kubectl apply -f k8s/
