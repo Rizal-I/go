@@ -1,14 +1,20 @@
-# syntax=docker/dockerfile:1
+# Use an existing node image as base image
+FROM node:14-alpine
 
-FROM node:18-alpine
-ENV NODE_ENV=production
-
+# Set the working directory in the container
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
 
-RUN npm install --production
+# Install required packages
+RUN npm install
 
+# Copy all files to the container
 COPY . .
 
-CMD ["node", "server.js"]
+# Expose port 3000
+EXPOSE 3000
+
+# Start the application
+CMD [ "npm", "start" ]

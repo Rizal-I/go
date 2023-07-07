@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodepintu
+  labels:
+    app: nodepintu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodepintu
+  template:
+    metadata:
+      labels:
+        app: nodepintu
+    spec:
+      containers:
+      - name: nodepintu
+        image: rizaleko/node:TAG
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "64Mi"
+            cpu: "10m"
