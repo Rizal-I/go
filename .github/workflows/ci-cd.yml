@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: go
-          file: Dockerfile.multistage
+          dockerfile: go/Dockerfile.multistage
           target: run-test-stage
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to:   type=local,dest=/tmp/.buildx-cache
@@ -60,7 +60,7 @@ jobs:
         with:
           push: true
           context: go
-          file: Dockerfile.multistage
+          dockerfile: go/Dockerfile.multistage
           target: build-release-stage
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
