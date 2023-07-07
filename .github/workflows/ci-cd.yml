@@ -2,14 +2,8 @@ name: Release to Docker Hub if tests OK (CI/CD)
 
 on:
   push:
-    branches:
-      - 'main'
-    tags:
-      - 'v*'
-  pull_request:
-    branches:
-      - 'main'
-
+    paths:
+      - 'go/**'
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
