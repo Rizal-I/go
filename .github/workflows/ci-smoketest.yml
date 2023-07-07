@@ -59,23 +59,33 @@ jobs:
       GKE_ZONE: us-central1-a
 
     steps:
-      - name: Set up Google Cloud CLI
-        uses: google-github-actions/setup-gcloud@v0.2.1
+      - name: Checkout
+      uses: actions/checkout@v3
+
+      # Configure Workload Identity Federation and generate an access token.
+     
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
         with:
-          # version: '340.0.0'
-          project_id: ${{ env.GKE_PROJECT }}
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          credentials_json: '${{ secrets.GKE_SA_KEY }}'
 
-      - name: Configure Service Account
-        run: |
-          echo ${{ secrets.GKE_SA_KEY }} | gcloud auth activate-service-account --key-file ${{ secrets.GKE_SA_KEY }}
-          gcloud config set project ${{ env.GKE_PROJECT }}
+      # Get the GKE credentials so we can deploy to the cluster
+      - name: Set up GKE credentials
+        uses: google-github-actions/get-gke-credentials@v0
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
 
-      - name: Configure Kubernetes
-        run: |
-          gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.GKE_PROJECT }}
+      # - name: Configure Service Account
+      #   run: |
+      #     echo ${{ secrets.GKE_SA_KEY }} | gcloud auth activate-service-account --key-file ${{ secrets.GKE_SA_KEY }}
+      #     gcloud config set project ${{ env.GKE_PROJECT }}
+
+      # - name: Configure Kubernetes
+      #   run: |
+      #     gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.GKE_PROJECT }}
 
       - name: Deploy to GKE
         run: |
-          sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
+          # sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
           kubectl apply -f k8s/
