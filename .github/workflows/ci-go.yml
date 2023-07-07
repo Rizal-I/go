@@ -47,6 +47,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: go
+          file: Dockerfile.multistage
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/go:${{ github.run_number }}
 

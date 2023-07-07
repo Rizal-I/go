@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - image: rizaleko/go:TAG
-        name: go
+        name: gopintu
         resources:
           requests:
             memory: "64Mi"
