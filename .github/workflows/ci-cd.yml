@@ -4,13 +4,13 @@ on:
   push:
     paths:
       - 'go/**'
+defaults:
+  run:
+    working-directory: go
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: go
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
