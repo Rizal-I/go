@@ -54,27 +54,27 @@ jobs:
     #needs: build-push
     runs-on: ubuntu-latest
     env:
-      GKE_PROJECT: fisclouds-demos
+      PROJECT_ID: ${{ secrets.GKE_PROJECT }}
       GKE_CLUSTER: default-cicd-demo-k8s
       GKE_ZONE: us-central1-a
 
     steps:
-      - name: Checkout
+    - name: Checkout
       uses: actions/checkout@v3
 
       # Configure Workload Identity Federation and generate an access token.
      
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GKE_SA_KEY }}'
 
       # Get the GKE credentials so we can deploy to the cluster
-      - name: Set up GKE credentials
-        uses: google-github-actions/get-gke-credentials@v0
-        with:
-          cluster_name: ${{ env.GKE_CLUSTER }}
-          location: ${{ env.GKE_ZONE }}
+    - name: Set up GKE credentials
+      uses: google-github-actions/get-gke-credentials@v0
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
 
       # - name: Configure Service Account
       #   run: |
@@ -85,7 +85,7 @@ jobs:
       #   run: |
       #     gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.GKE_PROJECT }}
 
-      - name: Deploy to GKE
-        run: |
-          # sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
-          kubectl apply -f k8s/
+    - name: Deploy to GKE
+      run: |
+        # sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
+        kubectl apply -f k8s/
