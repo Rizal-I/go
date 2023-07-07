@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+      working-directory: go
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -41,8 +42,7 @@ jobs:
       - name: Build app and run tests in Docker
         uses: docker/build-push-action@v4
         with:
-          context: go
-          dockerfile: go/Dockerfile.multistage
+          file: Dockerfile.multistage
           target: run-test-stage
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to:   type=local,dest=/tmp/.buildx-cache
@@ -59,8 +59,7 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           push: true
-          context: go
-          dockerfile: go/Dockerfile.multistage
+          file: Dockerfile.multistage
           target: build-release-stage
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

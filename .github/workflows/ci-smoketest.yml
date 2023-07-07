@@ -4,12 +4,12 @@ name: Run a smoke test (CI)
 # It does a simple build and test using Go toolchain directly in the GitHub runner.
 on:
   push:
-    paths:
-      - 'go/**'
+  workflow_dispatch:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+      working-directory: go
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,13 +19,13 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.19
+          go-version-file: go.mod
 
       - name: Fetch required Go modules
-        run: cd go && go mod download
+        run:  go mod download
 
       - name: Build
-        run: cd go && go build -v ./...
+        run:  go build -v ./...
 
       - name: Test
-        run: cd go && go test -v ./...
+        run:  go test -v ./...
