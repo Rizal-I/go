@@ -10,7 +10,7 @@ defaults:
     working-directory: go
 
 jobs:
-  build-test:
+  build-test-go:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +26,8 @@ jobs:
       - name: Test with the Go CLI
         run: go test
 
-  build-push:
-    needs: build-test
+  build-push-go:
+    needs: build-test-go
     runs-on: ubuntu-latest
 
     steps:
@@ -47,12 +47,11 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: go
-          file: Dockerfile.multistage
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/go:${{ github.run_number }}
 
-  deploy-gke:
-    needs: build-push
+  deploy-gke-go:
+    needs: build-push-go
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -69,14 +68,14 @@ jobs:
       with:
         credentials_json: '${{ secrets.GKE_SA_KEY }}'
 
-    # Get the GKE credentials so we can deploy to the cluster
-    - name: Set up GKE credentials
+    # Get the k8s credentials so we can deploy to the cluster
+    - name: Set up k8s credentials
       uses: google-github-actions/get-gke-credentials@v0
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
 
-    - name: Deploy to GKE
+    - name: Deploy Go App to k8s
       run: |
         sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
         kubectl apply -f k8s/
