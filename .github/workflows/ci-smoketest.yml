@@ -9,7 +9,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-      working-directory: go
+    defaults:
+      run:
+        working-directory
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
