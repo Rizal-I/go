@@ -29,9 +29,6 @@ jobs:
   docker-push:
     needs: build-test
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: go
 
     steps:
       - name: Checkout code
