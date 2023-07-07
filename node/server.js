@@ -1,7 +1,19 @@
-const ronin = require('ronin-server')
-const mocks = require('ronin-mocks')
+const ronin = require('ronin-server');
 
-const server = ronin.server()
+const server = ronin.server();
 
-server.use('/', mocks.server(server.Router(), false, true))
-server.start()
+// Define the route handler for /pintu
+server.get('/pintu', (req, res) => {
+  const response = {
+    code: '~~~pintu node <3~~~',
+    meta: {
+      total: 0,
+      count: 0
+    },
+    payload: []
+  };
+
+  res.json(response);
+});
+
+server.start();
