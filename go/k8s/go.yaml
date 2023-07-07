@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gopintu
+  name: gopintu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gopintu
+  template:
+    metadata:
+      labels:
+        app: gopintu
+    spec:
+      containers:
+      - image: rizaleko/go:TAG
+        name: go
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "10m"
+          limits:
+            memory: "64Mi"
+            cpu: "10m"
+          
