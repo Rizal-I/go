@@ -68,7 +68,7 @@ jobs:
   #       run: go test
 
   build-push-go:
-    needs: build-test-go
+    needs: build-and-test
     runs-on: ubuntu-latest
 
     steps:
