@@ -13,17 +13,10 @@ spec:
         app: web
     spec:
       containers:
-      - name: web
-        image: rizaleko/node-boilerplate:TAG
-        ports:
-          - containerPort: 8080
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "10m"
-          limits:
-            memory: "64Mi"
-            cpu: "10m"
-        env:
-          - name: MONGODB_URI
-            value: mongodb://mongo-service.default.svc.cluster.local:27017/test
+        - name: web
+          image: rizaleko/node-boilerplate:TAG
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              value: mongodb://mongo-service.default.svc.cluster.local:27017/test
