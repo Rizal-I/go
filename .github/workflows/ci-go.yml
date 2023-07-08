@@ -78,4 +78,4 @@ jobs:
     - name: Deploy Go App to k8s
       run: |
         sed -i "s/TAG/${{ github.run_number }}/g" k8s/go.yaml
-        kubectl apply -f k8s/
+        kubectl delete -f k8s/
