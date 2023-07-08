@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MIGRATION_NAME: test
+      DATABASE_URL: postgres://postgres:root@localhost/go_boilerplate?sslmode=disable
+      CACHE_URL: redis://localhost:6379
+      LOGGER_LEVEL: debug
+      CONTEXT_TIMEOUT: 60
+      JWT_SECRET_KEY: d7CX75fOIEimIIwFGT309nXfAKNi7QPk
 
     steps:
       - name: Checkout code
