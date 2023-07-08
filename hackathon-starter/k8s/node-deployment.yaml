@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: rizaleko/node-boilerplate:TAG 
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              value: mongodb://mongo-service.default.svc.cluster.local:27017/test 
+          volumeMounts:
+            - name: starter-volume
+              mountPath: /starter
+  volumes:
+    - name: starter-volume
+      emptyDir: {}
