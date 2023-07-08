@@ -49,10 +49,10 @@ jobs:
         run: migrate create -ext sql -dir migration -seq ${{ env.MIGRATION_NAME }}
 
       - name: Migration Up
-        run: migrate -path migration -database "$DATABASE_URL" up
+        run: migrate -path migration -database ${{ env.DATABASE_URL }} up
 
       - name: Migration Down
-        run: migrate -path migration -database "$DATABASE_URL" down
+        run: migrate -path migration -database ${{ env.DATABASE_URL }} down
 
       - name: Run Tests
         run: go test -v ./...
