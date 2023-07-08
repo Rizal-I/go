@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: rizaleko/node-boilerplate:3
+          image: rizaleko/node-boilerplate:TAG
           ports:
             - containerPort: 8080
           env:
