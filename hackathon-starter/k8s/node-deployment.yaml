@@ -23,6 +23,13 @@ spec:
         volumeMounts:
           - name: starter-volume
             mountPath: /starter
-  volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: starter-volume
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
   - name: starter-volume
     emptyDir: {}
