@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'go/**'
+      - '.gothub/workflows/ci-go.yaml'
 
 defaults:
   run:
