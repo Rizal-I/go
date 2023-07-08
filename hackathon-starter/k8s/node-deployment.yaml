@@ -13,23 +13,10 @@ spec:
         app: web
     spec:
       containers:
-      - name: web
-        image: rizaleko/node-boilerplate:TAG 
-        ports:
-          - containerPort: 8080
-        env:
-          - name: MONGODB_URI
-            value: mongodb://mongo-service.default.svc.cluster.local:27017/test 
-        volumeMounts:
-          - name: starter-volume
-            mountPath: /starter
-  volumeClaimTemplates:
-    - metadata:
-        name: starter-volume
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
-  - name: starter-volume
-    emptyDir: {}
+        - name: web
+          image: rizaleko/node-boilerplate:3
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              value: mongodb://mongo-service.default.svc.cluster.local:27017/test
