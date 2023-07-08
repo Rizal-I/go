@@ -38,13 +38,13 @@ jobs:
             cp .env .env.github
           fi
 
-      - name: Prompt for Migration Name
-        id: prompt-name
+      - name: Set migration name
+        id: set-migration-name
         run: |
-          echo "::set-output name=name::$(read -p 'Enter migration name: ' input && echo $input)"
+          echo "MIGRATION_NAME=$(read -p 'Enter migration name: ' input && echo $input)" >> $GITHUB_ENV
 
       - name: Migration Create
-        run: migrate create -ext sql -dir migration -seq ${{ steps.prompt-name.outputs.name }}
+        run: migrate create -ext sql -dir migration -seq ${{ env.MIGRATION_NAME }}
 
       - name: Migration Up
         run: migrate -path migration -database "$DATABASE_URL" up
