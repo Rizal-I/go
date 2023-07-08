@@ -6,5 +6,5 @@ spec:
   selector:
     app: mongo
   ports:
-    - protocol: TCP
-      port: 27017
+  - protocol: TCP
+    port: 27017
