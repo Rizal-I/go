@@ -44,6 +44,9 @@ jobs:
           if [ -f ./.env ]; then
             cp .env .env.github
           fi
+      
+      - name: Install mockery
+        run: go install github.com/vektra/mockery/v2@latest
 
       - name: Migration Create
         run: migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" create -ext sql -dir migration -seq ${{ env.MIGRATION_NAME }}
