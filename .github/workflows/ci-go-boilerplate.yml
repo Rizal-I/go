@@ -51,8 +51,10 @@ jobs:
       - name: Migration Up
         run: migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" up
 
-      - name: Migration Down
-        run: migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" down --yes
+      - name: Automatic Migration Down
+        run: |
+          echo "y" | migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" down
+
 
       - name: Run Tests
         run: go test -v ./...
