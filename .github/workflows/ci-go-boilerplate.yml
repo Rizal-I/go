@@ -38,8 +38,13 @@ jobs:
             cp .env .env.github
           fi
 
+      - name: Prompt for Migration Name
+        id: prompt-name
+        run: |
+          echo "::set-output name=name::$(read -p 'Enter migration name: ' input && echo $input)"
+
       - name: Migration Create
-        run: migrate create -ext sql -dir migration -seq ${{ secrets.MIGRATION_NAME }}
+        run: migrate create -ext sql -dir migration -seq ${{ steps.prompt-name.outputs.name }}
 
       - name: Migration Up
         run: migrate -path migration -database "$DATABASE_URL" up
