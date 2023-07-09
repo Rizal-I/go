@@ -1,6 +1,6 @@
 1. Source Boilerplate
-   - a. NODE boilerplate: [hackathon-starter](https://github.com/sahat/hackathon-starter)
-   - b. GO boilerplate: [go-boilerplate](https://github.com/syahidfrd/go-boilerplate)
+   - a. ```GO boilerplate```: [go-boilerplate](https://github.com/syahidfrd/go-boilerplate)
+   - b. ```NODE boilerplate```: [hackathon-starter](https://github.com/sahat/hackathon-starter)
 
 2. CI/CD
    - a. Build and test (optional) the services:
@@ -147,7 +147,7 @@
               kubectl apply -f k8s/
         ```
    - both two CI/CD yml file will look like this
-      - ci-go-boilerplate.yml
+      - ```ci-go-boilerplate.yml```
         ```yaml
          name: Golang Build, Test, Push to Docker Hub, and Deploy to K8S
          on:
@@ -264,7 +264,7 @@
                  sed -i "s/TAG/${{ github.run_number }}/g" k8s/go-deployment.yaml
                  kubectl apply -f k8s/
         ```
-      - node-go-boilerplate.yml
+      - ```node-go-boilerplate.yml```
         ```yaml
          name: Node Build, Test, Push to Docker Hub, and Deploy to K8S
          
