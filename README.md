@@ -2,7 +2,7 @@
    - a. NODE boilerplate: [hackathon-starter](https://github.com/sahat/hackathon-starter)
    - b. GO boilerplate: [go-boilerplate](https://github.com/syahidfrd/go-boilerplate)
 
-3. CI/CD
+2. CI/CD
    - a. Build and test (optional) the services:
      -  For Go Service, Create folder and file on this repo
           ```
@@ -324,12 +324,22 @@
                  sed -i "s/TAG/${{ github.run_number }}/g" k8s/node-deployment.yaml
                  kubectl apply -f k8s/
         ```
-5. Service
-   - a. [Go Service API Documentation](https://golang.35.202.193.211.nip.io/swagger/index.html)
-   - b. [Node.js Service API](https://node.35.202.193.211.nip.io/api)
+      - Kubernetes Yaml file
+        - GO service [Link](https://github.com/Rizal-I/go/tree/main/go-boilerplate/k8s)
+        - Node Service [Link](https://github.com/Rizal-I/go/tree/main/hackathon-starter/k8s)
+3. Service
+   - a. Go Service [golang.35.202.193.211.nip.io](https://golang.35.202.193.211.nip.io/swagger/index.html)
+     <picture>
+        <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/Rizal-I/go/blob/main/imges/image%20(10).png">
+     </picture>
+
+   - b.  Node Service  [node.35.202.193.211.nip.io](https://node.35.202.193.211.nip.io/api)
+      <picture>
+        <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/Rizal-I/go/blob/main/imges/image%20(9).png">
+      </picture>
      - If not accessible, the service has already been scaled down. Please reach out to me to scale up the service.
 
-6. Stack
+4. Stack
    - a. GitHub Actions for CI/CD
    - b. nip.io for DNS
    - c. Istio for service management
