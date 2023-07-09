@@ -44,14 +44,14 @@ jobs:
         run: go install github.com/vektra/mockery/v2@latest
 
       - name: Migration Create
-        run: migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" create -ext sql -dir migration -seq ${{ env.MIGRATION_NAME }}
+        run: migrate -path migration -database "postgres://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost/go_boilerplate?sslmode=disable" create -ext sql -dir migration -seq ${{ env.MIGRATION_NAME }}
 
       - name: Migration Up
-        run: migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" up
+        run: migrate -path migration -database "postgres://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost/go_boilerplate?sslmode=disable" up
 
       - name: Automatic Migration Down
         run: |
-          echo "y" | migrate -path migration -database "postgres://postgres:postgres@localhost/go_boilerplate?sslmode=disable" down
+          echo "y" | migrate -path migration -database "postgres://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost/go_boilerplate?sslmode=disable" down
 
 
       - name: Run Tests
