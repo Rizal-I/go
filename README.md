@@ -5,11 +5,11 @@
 2. CI/CD
    - a. Build and test (optional) the services:
      - Create Actions secrets
-       - DOCKER_HUB_ACCESS_TOKEN for access token required in ci/cd for dockerhub
-       - DOCKER_HUB_USERNAME for username of dockerhub
-       - POSTGRES_PASSWORD for postgres password on testing stage
-       - GKE_PROJECT for kubernetes project
-       - GKE_SA_KEY for kubernetes credentials connection and update resource on it
+       - ```DOCKER_HUB_ACCESS_TOKEN``` for access token required in ci/cd for dockerhub
+       - ```DOCKER_HUB_USERNAME``` for username of dockerhub
+       - ```POSTGRES_PASSWORD``` for postgres password on testing stage
+       - ```GKE_PROJECT``` for kubernetes project
+       - ```GKE_SA_KEY``` for kubernetes credentials connection and update resource on it
          
      -  For Go Service, Create folder and file on this repo
           ```
