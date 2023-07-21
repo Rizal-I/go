@@ -61,4 +61,4 @@ jobs:
     - name: Deploy node App to k8s
       run: |
         sed -i "s/TAG/${{ github.run_number }}/g" k8s/node-deployment.yaml
-        kubectl delete -f k8s/
+        kubectl apply -f k8s/
