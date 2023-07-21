@@ -340,7 +340,7 @@
         <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/Rizal-I/go/blob/main/imges/image%20(10).png">
      </picture>
 
-   - b.  Node Service  [node.35.202.193.211.nip.io](https://node.35.202.193.211.nip.io/api)
+   - b.  Node Service  [node.35.202.193.211.nip.io](https://node.35.202.193.211.nip.io/)
       <picture>
         <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/Rizal-I/go/blob/main/imges/image%20(9).png">
       </picture>
