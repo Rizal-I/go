@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'hackathon-starter/**'
-      - '.github/workfolws/ci-node-boilerplate.yml'
 
 defaults:
   run:
